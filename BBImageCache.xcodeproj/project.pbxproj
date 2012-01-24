@@ -1,0 +1,367 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1558E3BC14C90C2F00867F2C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1558E3BB14C90C2F00867F2C /* UIKit.framework */; };
+		1558E3BE14C90C2F00867F2C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1558E3BD14C90C2F00867F2C /* Foundation.framework */; };
+		1558E3C014C90C2F00867F2C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1558E3BF14C90C2F00867F2C /* CoreGraphics.framework */; };
+		1558E3C214C90C2F00867F2C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1558E3C114C90C2F00867F2C /* CoreData.framework */; };
+		15656B7E14CE998F00FF996F /* BBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 15656B6314CE998F00FF996F /* BBAppDelegate.m */; };
+		15656B7F14CE998F00FF996F /* BBProfiler.m in Sources */ = {isa = PBXBuildFile; fileRef = 15656B6514CE998F00FF996F /* BBProfiler.m */; };
+		15656B8014CE998F00FF996F /* BBRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15656B6714CE998F00FF996F /* BBRootViewController.m */; };
+		15656B8114CE998F00FF996F /* BBCacheEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 15656B6C14CE998F00FF996F /* BBCacheEntry.m */; };
+		15656B8214CE998F00FF996F /* BBCoreDataImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 15656B6E14CE998F00FF996F /* BBCoreDataImageCache.m */; };
+		15656B8414CE998F00FF996F /* UIImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 15656B7214CE998F00FF996F /* UIImageTransformer.m */; };
+		15656B8514CE998F00FF996F /* BBFilesystemImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 15656B7514CE998F00FF996F /* BBFilesystemImageCache.m */; };
+		15656B8714CE998F00FF996F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15656B7914CE998F00FF996F /* InfoPlist.strings */; };
+		15656B8814CE998F00FF996F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 15656B7B14CE998F00FF996F /* main.m */; };
+		15656B8914CE998F00FF996F /* buddy_jesus.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 15656B7D14CE998F00FF996F /* buddy_jesus.jpg */; };
+		1589486D14CE9D2900512D7F /* BBImageCache.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1589486B14CE9D2900512D7F /* BBImageCache.xcdatamodeld */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1558E3B714C90C2F00867F2C /* BBImageCache.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBImageCache.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1558E3BB14C90C2F00867F2C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1558E3BD14C90C2F00867F2C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1558E3BF14C90C2F00867F2C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1558E3C114C90C2F00867F2C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		15656B6214CE998F00FF996F /* BBAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAppDelegate.h; sourceTree = "<group>"; };
+		15656B6314CE998F00FF996F /* BBAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAppDelegate.m; sourceTree = "<group>"; };
+		15656B6414CE998F00FF996F /* BBProfiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBProfiler.h; sourceTree = "<group>"; };
+		15656B6514CE998F00FF996F /* BBProfiler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBProfiler.m; sourceTree = "<group>"; };
+		15656B6614CE998F00FF996F /* BBRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBRootViewController.h; sourceTree = "<group>"; };
+		15656B6714CE998F00FF996F /* BBRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBRootViewController.m; sourceTree = "<group>"; };
+		15656B6914CE998F00FF996F /* BBImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBImageCache.h; sourceTree = "<group>"; };
+		15656B6B14CE998F00FF996F /* BBCacheEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBCacheEntry.h; sourceTree = "<group>"; };
+		15656B6C14CE998F00FF996F /* BBCacheEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBCacheEntry.m; sourceTree = "<group>"; };
+		15656B6D14CE998F00FF996F /* BBCoreDataImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBCoreDataImageCache.h; sourceTree = "<group>"; };
+		15656B6E14CE998F00FF996F /* BBCoreDataImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBCoreDataImageCache.m; sourceTree = "<group>"; };
+		15656B7114CE998F00FF996F /* UIImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageTransformer.h; sourceTree = "<group>"; };
+		15656B7214CE998F00FF996F /* UIImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageTransformer.m; sourceTree = "<group>"; };
+		15656B7414CE998F00FF996F /* BBFilesystemImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFilesystemImageCache.h; sourceTree = "<group>"; };
+		15656B7514CE998F00FF996F /* BBFilesystemImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFilesystemImageCache.m; sourceTree = "<group>"; };
+		15656B7714CE998F00FF996F /* BBImageCache-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BBImageCache-Info.plist"; sourceTree = "<group>"; };
+		15656B7814CE998F00FF996F /* BBImageCache-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BBImageCache-Prefix.pch"; sourceTree = "<group>"; };
+		15656B7A14CE998F00FF996F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		15656B7B14CE998F00FF996F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		15656B7D14CE998F00FF996F /* buddy_jesus.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = buddy_jesus.jpg; sourceTree = "<group>"; };
+		1589486C14CE9D2900512D7F /* BBImageCache.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BBImageCache.xcdatamodel; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1558E3B414C90C2F00867F2C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1558E3BC14C90C2F00867F2C /* UIKit.framework in Frameworks */,
+				1558E3BE14C90C2F00867F2C /* Foundation.framework in Frameworks */,
+				1558E3C014C90C2F00867F2C /* CoreGraphics.framework in Frameworks */,
+				1558E3C214C90C2F00867F2C /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1558E3AC14C90C2F00867F2C = {
+			isa = PBXGroup;
+			children = (
+				15656B6014CE998F00FF996F /* BBImageCache */,
+				1558E3BA14C90C2F00867F2C /* Frameworks */,
+				1558E3B814C90C2F00867F2C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1558E3B814C90C2F00867F2C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1558E3B714C90C2F00867F2C /* BBImageCache.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1558E3BA14C90C2F00867F2C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1558E3BB14C90C2F00867F2C /* UIKit.framework */,
+				1558E3BD14C90C2F00867F2C /* Foundation.framework */,
+				1558E3BF14C90C2F00867F2C /* CoreGraphics.framework */,
+				1558E3C114C90C2F00867F2C /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		15656B6014CE998F00FF996F /* BBImageCache */ = {
+			isa = PBXGroup;
+			children = (
+				15656B6114CE998F00FF996F /* Classes */,
+				15656B7614CE998F00FF996F /* Other */,
+				15656B7C14CE998F00FF996F /* Resources */,
+			);
+			path = BBImageCache;
+			sourceTree = "<group>";
+		};
+		15656B6114CE998F00FF996F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				15656B6214CE998F00FF996F /* BBAppDelegate.h */,
+				15656B6314CE998F00FF996F /* BBAppDelegate.m */,
+				15656B6414CE998F00FF996F /* BBProfiler.h */,
+				15656B6514CE998F00FF996F /* BBProfiler.m */,
+				15656B6614CE998F00FF996F /* BBRootViewController.h */,
+				15656B6714CE998F00FF996F /* BBRootViewController.m */,
+				15656B6814CE998F00FF996F /* ImageCache */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		15656B6814CE998F00FF996F /* ImageCache */ = {
+			isa = PBXGroup;
+			children = (
+				15656B6A14CE998F00FF996F /* CoreDataCache */,
+				15656B7314CE998F00FF996F /* FileSystemCache */,
+				15656B6914CE998F00FF996F /* BBImageCache.h */,
+			);
+			path = ImageCache;
+			sourceTree = "<group>";
+		};
+		15656B6A14CE998F00FF996F /* CoreDataCache */ = {
+			isa = PBXGroup;
+			children = (
+				15656B6B14CE998F00FF996F /* BBCacheEntry.h */,
+				15656B6C14CE998F00FF996F /* BBCacheEntry.m */,
+				15656B6D14CE998F00FF996F /* BBCoreDataImageCache.h */,
+				15656B6E14CE998F00FF996F /* BBCoreDataImageCache.m */,
+				15656B7114CE998F00FF996F /* UIImageTransformer.h */,
+				15656B7214CE998F00FF996F /* UIImageTransformer.m */,
+				1589486B14CE9D2900512D7F /* BBImageCache.xcdatamodeld */,
+			);
+			path = CoreDataCache;
+			sourceTree = "<group>";
+		};
+		15656B7314CE998F00FF996F /* FileSystemCache */ = {
+			isa = PBXGroup;
+			children = (
+				15656B7414CE998F00FF996F /* BBFilesystemImageCache.h */,
+				15656B7514CE998F00FF996F /* BBFilesystemImageCache.m */,
+			);
+			path = FileSystemCache;
+			sourceTree = "<group>";
+		};
+		15656B7614CE998F00FF996F /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				15656B7714CE998F00FF996F /* BBImageCache-Info.plist */,
+				15656B7814CE998F00FF996F /* BBImageCache-Prefix.pch */,
+				15656B7914CE998F00FF996F /* InfoPlist.strings */,
+				15656B7B14CE998F00FF996F /* main.m */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		15656B7C14CE998F00FF996F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				15656B7D14CE998F00FF996F /* buddy_jesus.jpg */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1558E3B614C90C2F00867F2C /* BBImageCache */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1558E3D414C90C2F00867F2C /* Build configuration list for PBXNativeTarget "BBImageCache" */;
+			buildPhases = (
+				1558E3B314C90C2F00867F2C /* Sources */,
+				1558E3B414C90C2F00867F2C /* Frameworks */,
+				1558E3B514C90C2F00867F2C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BBImageCache;
+			productName = BBImageCache;
+			productReference = 1558E3B714C90C2F00867F2C /* BBImageCache.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1558E3AE14C90C2F00867F2C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 1558E3B114C90C2F00867F2C /* Build configuration list for PBXProject "BBImageCache" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1558E3AC14C90C2F00867F2C;
+			productRefGroup = 1558E3B814C90C2F00867F2C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1558E3B614C90C2F00867F2C /* BBImageCache */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1558E3B514C90C2F00867F2C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15656B8714CE998F00FF996F /* InfoPlist.strings in Resources */,
+				15656B8914CE998F00FF996F /* buddy_jesus.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1558E3B314C90C2F00867F2C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15656B7E14CE998F00FF996F /* BBAppDelegate.m in Sources */,
+				15656B7F14CE998F00FF996F /* BBProfiler.m in Sources */,
+				15656B8014CE998F00FF996F /* BBRootViewController.m in Sources */,
+				15656B8114CE998F00FF996F /* BBCacheEntry.m in Sources */,
+				15656B8214CE998F00FF996F /* BBCoreDataImageCache.m in Sources */,
+				15656B8414CE998F00FF996F /* UIImageTransformer.m in Sources */,
+				15656B8514CE998F00FF996F /* BBFilesystemImageCache.m in Sources */,
+				15656B8814CE998F00FF996F /* main.m in Sources */,
+				1589486D14CE9D2900512D7F /* BBImageCache.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		15656B7914CE998F00FF996F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				15656B7A14CE998F00FF996F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1558E3D214C90C2F00867F2C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1558E3D314C90C2F00867F2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1558E3D514C90C2F00867F2C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BBImageCache/Other/BBImageCache-Prefix.pch";
+				INFOPLIST_FILE = "BBImageCache/Other/BBImageCache-Info.plist";
+				PRODUCT_NAME = BBImageCache;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		1558E3D614C90C2F00867F2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BBImageCache/Other/BBImageCache-Prefix.pch";
+				INFOPLIST_FILE = "BBImageCache/Other/BBImageCache-Info.plist";
+				PRODUCT_NAME = BBImageCache;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1558E3B114C90C2F00867F2C /* Build configuration list for PBXProject "BBImageCache" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1558E3D214C90C2F00867F2C /* Debug */,
+				1558E3D314C90C2F00867F2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1558E3D414C90C2F00867F2C /* Build configuration list for PBXNativeTarget "BBImageCache" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1558E3D514C90C2F00867F2C /* Debug */,
+				1558E3D614C90C2F00867F2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1589486B14CE9D2900512D7F /* BBImageCache.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1589486C14CE9D2900512D7F /* BBImageCache.xcdatamodel */,
+			);
+			currentVersion = 1589486C14CE9D2900512D7F /* BBImageCache.xcdatamodel */;
+			path = BBImageCache.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 1558E3AE14C90C2F00867F2C /* Project object */;
+}
