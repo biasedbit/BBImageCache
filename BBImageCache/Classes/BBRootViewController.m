@@ -38,6 +38,7 @@ NSUInteger const kBBRootViewControllerOperations = 100;
 - (NSString*)humanReadableTime:(uint64_t)nanoseconds;
 - (void)testCacheCorrectness:(id<BBImageCache>)cache;
 - (NSString*)testCacheSpeed:(id<BBImageCache>)cache;
+- (NSString*)testCacheSpeedWithImageBuilding:(id<BBImageCache>)cache;
 
 @end
 
@@ -90,6 +91,9 @@ NSUInteger const kBBRootViewControllerOperations = 100;
 {
     dispatch_async(dispatch_get_main_queue(), ^() {
         _textView.text = [NSString stringWithFormat:@"%@%@\n", _textView.text, text];
+
+        NSRange lastChar = NSMakeRange([_textView.text length] - 1, 1);
+        [_textView scrollRangeToVisible:lastChar];
     });
 
     BBLogInfo(@"%@", text);
@@ -116,14 +120,16 @@ NSUInteger const kBBRootViewControllerOperations = 100;
 #ifdef LOG_TRACE
     [self appendText:@"Comment out the definition of LOG_TRACE preprocessor macro on ImageCacheSpeedTest-Prefix.pch"];
 #else
-    [self appendText:@"Testing coredata cache..."];
+    [self appendText:@"Testing coredata cache...\n"];
     [self appendText:[self testCacheSpeed:cdCache]];
+    [self appendText:[self testCacheSpeedWithImageBuilding:cdCache]];
     [self appendText:@"Finished testing coredata cache..."];
 
     sleep(1);
 
-    [self appendText:@"Testing filesystem cache..."];
+    [self appendText:@"Testing filesystem cache...\n"];
     [self appendText:[self testCacheSpeed:fsCache]];
+    [self appendText:[self testCacheSpeedWithImageBuilding:fsCache]];
     [self appendText:@"Finished testing filesystem cache..."];
 
     [self appendText:@"Done!"];
@@ -200,7 +206,7 @@ NSUInteger const kBBRootViewControllerOperations = 100;
 - (NSString*)testCacheSpeed:(id<BBImageCache>)cache
 {
     UIImage* buddyJesus = [UIImage imageNamed:@"buddy_jesus.jpg"];
-    
+
     uint64_t storeNanoseconds = [BBProfiler profileBlock:^() {
         for (NSUInteger i = 0; i < kBBRootViewControllerOperations; i++) {
             [cache storeImage:buddyJesus forKey:[NSString stringWithFormat:@"key %u", i]];
@@ -230,17 +236,73 @@ NSUInteger const kBBRootViewControllerOperations = 100;
     }];
 
     return [NSString stringWithFormat:
-            @"\nExecution times:\n"
+            @"Execution times:\n"
             "Store:\t\t%@\n"
             "Load:\t\t%@\n"
             "Sync:\t\t%@\n"
             "Clear:\t\t%@\n"
-            "Store&Sync:\t%@\n",
+            "Store&Sync:\t%@\n"
+            "Item count:\t%u\n",
             [self humanReadableTime:storeNanoseconds],
             [self humanReadableTime:loadNanoseconds],
             [self humanReadableTime:synchronizeNanoseconds],
             [self humanReadableTime:clearNanoseconds],
-            [self humanReadableTime:storeAndSynchronizeNanoseconds]];
+            [self humanReadableTime:storeAndSynchronizeNanoseconds],
+            [cache itemsInCache]];
+}
+
+- (NSString*)testCacheSpeedWithImageBuilding:(id<BBImageCache>)cache
+{
+    // This method ensures that a different image is created from block of data, thus avoiding any potential
+    // transformation in CoreData's caches
+
+    UIImage* buddyJesus = [UIImage imageNamed:@"buddy_jesus.jpg"];
+    NSData* imageData = UIImagePNGRepresentation(buddyJesus);
+
+    uint64_t storeNanoseconds = [BBProfiler profileBlock:^() {
+        for (NSUInteger i = 0; i < kBBRootViewControllerOperations; i++) {
+            UIImage* imageFromData = [UIImage imageWithData:imageData];
+            [cache storeImage:imageFromData forKey:[NSString stringWithFormat:@"key %u", i]];
+        }
+    }];
+
+    uint64_t loadNanoseconds = [BBProfiler profileBlock:^() {
+        for (NSUInteger i = 0; i < kBBRootViewControllerOperations; i++) {
+            [cache imageForKey:[NSString stringWithFormat:@"key %u", i]];
+        }
+    }];
+
+    uint64_t synchronizeNanoseconds = [BBProfiler profileBlock:^() {
+        [cache synchronizeCache];
+    }];
+
+    uint64_t clearNanoseconds = [BBProfiler profileBlock:^() {
+        [cache clearCache];
+        [cache synchronizeCache];
+    }];
+
+    uint64_t storeAndSynchronizeNanoseconds = [BBProfiler profileBlock:^() {
+        for (NSUInteger i = 0; i < kBBRootViewControllerOperations; i++) {
+            UIImage* imageFromData = [UIImage imageWithData:imageData];
+            [cache storeImage:imageFromData forKey:[NSString stringWithFormat:@"key %u", i]];
+            [cache synchronizeCache];
+        }
+    }];
+
+    return [NSString stringWithFormat:
+            @"Execution times (w/ image building):\n"
+            "Store:\t\t%@\n"
+            "Load:\t\t%@\n"
+            "Sync:\t\t%@\n"
+            "Clear:\t\t%@\n"
+            "Store&Sync:\t%@\n"
+            "Item count:\t%u\n",
+            [self humanReadableTime:storeNanoseconds],
+            [self humanReadableTime:loadNanoseconds],
+            [self humanReadableTime:synchronizeNanoseconds],
+            [self humanReadableTime:clearNanoseconds],
+            [self humanReadableTime:storeAndSynchronizeNanoseconds],
+            [cache itemsInCache]];
 }
 
 @end
