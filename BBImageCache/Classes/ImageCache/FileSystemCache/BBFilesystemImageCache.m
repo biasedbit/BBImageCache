@@ -211,6 +211,19 @@ NSTimeInterval const kBBFilesystemImageCacheDefaultTimeout   = 86400;
     return image;
 }
 
+- (BOOL)performBlockAndSynchronize:(void (^)())block
+{
+    NSString* cacheIndexPath = [self cachePathForKey:_cacheIndexFilename];
+    __block BOOL wrote;
+
+    dispatch_sync(_queue, ^() {
+        block();
+        wrote = [_cacheEntries writeToFile:cacheIndexPath atomically:YES];
+    });
+
+    return wrote;
+}
+
 
 #pragma mark Public methods
 
