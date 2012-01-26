@@ -17,6 +17,5 @@
 - (NSUInteger)purgeStaleData;
 - (BOOL)storeImage:(UIImage*)image forKey:(NSString*)key;
 - (UIImage*)imageForKey:(NSString*)key;
-- (BOOL)performBlockAndSynchronize:(void (^)())block;
 
 @end

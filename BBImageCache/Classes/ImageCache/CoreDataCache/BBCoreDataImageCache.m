@@ -236,12 +236,6 @@ NSTimeInterval const kBBCoreDataImageCacheDefaultTimeout = 86400; // 1 day
     }
 }
 
-- (BOOL)performBlockAndSynchronize:(void (^)())block
-{
-    block();
-    return [self synchronizeCache];
-}
-
 
 #pragma mark Private helpers
 
