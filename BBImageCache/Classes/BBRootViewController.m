@@ -105,9 +105,22 @@ NSUInteger const kBBRootViewControllerOperations = 100;
     
     // A normal usage would be [BBFilesystemImageCache sharedCache], but for testing purposes we want a 2sec expiration
     BBFilesystemImageCache* fsCache = [[BBFilesystemImageCache alloc]
-                                       initWithCacheName:@"testCache" andTimeoutInterval:2];
+                                       initWithCacheName:@"testCache" andItemDuration:2];
     BBCoreDataImageCache* cdCache = [[BBCoreDataImageCache alloc]
-                                     initWithContext:appDelegate.managedObjectContext andTimeoutInterval:2];
+                                     initWithContext:appDelegate.managedObjectContext andItemDuration:2];
+
+    // Test how much time it takes to create X images from NSData
+    UIImage* buddyJesus = [UIImage imageNamed:@"buddy_jesus.jpg"];
+    NSData* imageData = UIImagePNGRepresentation(buddyJesus);
+    uint64_t createNanoseconds = [BBProfiler profileBlock:^() {
+        for (NSUInteger i = 0; i < kBBRootViewControllerOperations; i++) {
+            [UIImage imageWithData:imageData];
+        }
+    }];
+
+    NSString* text = [NSString stringWithFormat:@"Time taken to create %u images from NSData: %@",
+                      kBBRootViewControllerOperations, [self humanReadableTime:createNanoseconds]];
+    [self appendText:text];
 
     [self appendText:@"Running correctness tests..."];
     [self testCacheCorrectness:cdCache];
@@ -212,22 +225,22 @@ NSUInteger const kBBRootViewControllerOperations = 100;
             [cache storeImage:buddyJesus forKey:[NSString stringWithFormat:@"key %u", i]];
         }
     }];
-    
+
+    uint64_t synchronizeNanoseconds = [BBProfiler profileBlock:^() {
+        [cache synchronizeCache];
+    }];
+
     uint64_t loadNanoseconds = [BBProfiler profileBlock:^() {
         for (NSUInteger i = 0; i < kBBRootViewControllerOperations; i++) {
             [cache imageForKey:[NSString stringWithFormat:@"key %u", i]];
         }
     }];
-    
-    uint64_t synchronizeNanoseconds = [BBProfiler profileBlock:^() {
-        [cache synchronizeCache];
-    }];
-    
+
     uint64_t clearNanoseconds = [BBProfiler profileBlock:^() {
         [cache clearCache];
         [cache synchronizeCache];
     }];
-    
+
     uint64_t storeAndSynchronizeNanoseconds = [BBProfiler profileBlock:^() {
         for (NSUInteger i = 0; i < kBBRootViewControllerOperations; i++) {
             [cache storeImage:buddyJesus forKey:[NSString stringWithFormat:@"key %u", i]];
@@ -238,14 +251,14 @@ NSUInteger const kBBRootViewControllerOperations = 100;
     return [NSString stringWithFormat:
             @"Execution times:\n"
             "Store:\t\t%@\n"
-            "Load:\t\t%@\n"
             "Sync:\t\t%@\n"
-            "Clear:\t\t%@\n"
+            "Load:\t\t%@\n"
+            "Clear&Sync:\t%@\n"
             "Store&Sync:\t%@\n"
             "Item count:\t%u\n",
             [self humanReadableTime:storeNanoseconds],
-            [self humanReadableTime:loadNanoseconds],
             [self humanReadableTime:synchronizeNanoseconds],
+            [self humanReadableTime:loadNanoseconds],
             [self humanReadableTime:clearNanoseconds],
             [self humanReadableTime:storeAndSynchronizeNanoseconds],
             [cache itemsInCache]];
@@ -258,22 +271,29 @@ NSUInteger const kBBRootViewControllerOperations = 100;
 
     UIImage* buddyJesus = [UIImage imageNamed:@"buddy_jesus.jpg"];
     NSData* imageData = UIImagePNGRepresentation(buddyJesus);
+    
+    NSMutableArray* array = [NSMutableArray arrayWithCapacity:kBBRootViewControllerOperations];
+    for (NSUInteger i = 0; i < kBBRootViewControllerOperations; i++) {
+        UIImage* imageFromData = [UIImage imageWithData:imageData];
+        [array addObject:imageFromData];
+    }
 
     uint64_t storeNanoseconds = [BBProfiler profileBlock:^() {
         for (NSUInteger i = 0; i < kBBRootViewControllerOperations; i++) {
-            UIImage* imageFromData = [UIImage imageWithData:imageData];
-            [cache storeImage:imageFromData forKey:[NSString stringWithFormat:@"key %u", i]];
+            // Cost of retrieving image at index from an array is negligible
+            UIImage* image = [array objectAtIndex:i];
+            [cache storeImage:image forKey:[NSString stringWithFormat:@"key %u", i]];
         }
+    }];
+
+    uint64_t synchronizeNanoseconds = [BBProfiler profileBlock:^() {
+        [cache synchronizeCache];
     }];
 
     uint64_t loadNanoseconds = [BBProfiler profileBlock:^() {
         for (NSUInteger i = 0; i < kBBRootViewControllerOperations; i++) {
             [cache imageForKey:[NSString stringWithFormat:@"key %u", i]];
         }
-    }];
-
-    uint64_t synchronizeNanoseconds = [BBProfiler profileBlock:^() {
-        [cache synchronizeCache];
     }];
 
     uint64_t clearNanoseconds = [BBProfiler profileBlock:^() {
@@ -283,8 +303,8 @@ NSUInteger const kBBRootViewControllerOperations = 100;
 
     uint64_t storeAndSynchronizeNanoseconds = [BBProfiler profileBlock:^() {
         for (NSUInteger i = 0; i < kBBRootViewControllerOperations; i++) {
-            UIImage* imageFromData = [UIImage imageWithData:imageData];
-            [cache storeImage:imageFromData forKey:[NSString stringWithFormat:@"key %u", i]];
+            UIImage* image = [array objectAtIndex:i];
+            [cache storeImage:image forKey:[NSString stringWithFormat:@"key %u", i]];
             [cache synchronizeCache];
         }
     }];
@@ -292,14 +312,14 @@ NSUInteger const kBBRootViewControllerOperations = 100;
     return [NSString stringWithFormat:
             @"Execution times (w/ image building):\n"
             "Store:\t\t%@\n"
-            "Load:\t\t%@\n"
             "Sync:\t\t%@\n"
-            "Clear:\t\t%@\n"
+            "Load:\t\t%@\n"
+            "Clear&Sync:\t%@\n"
             "Store&Sync:\t%@\n"
             "Item count:\t%u\n",
             [self humanReadableTime:storeNanoseconds],
-            [self humanReadableTime:loadNanoseconds],
             [self humanReadableTime:synchronizeNanoseconds],
+            [self humanReadableTime:loadNanoseconds],
             [self humanReadableTime:clearNanoseconds],
             [self humanReadableTime:storeAndSynchronizeNanoseconds],
             [cache itemsInCache]];

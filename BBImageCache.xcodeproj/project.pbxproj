@@ -16,7 +16,7 @@
 		15656B8014CE998F00FF996F /* BBRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15656B6714CE998F00FF996F /* BBRootViewController.m */; };
 		15656B8114CE998F00FF996F /* BBCacheEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 15656B6C14CE998F00FF996F /* BBCacheEntry.m */; };
 		15656B8214CE998F00FF996F /* BBCoreDataImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 15656B6E14CE998F00FF996F /* BBCoreDataImageCache.m */; };
-		15656B8414CE998F00FF996F /* UIImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 15656B7214CE998F00FF996F /* UIImageTransformer.m */; };
+		15656B8414CE998F00FF996F /* BBImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 15656B7214CE998F00FF996F /* BBImageTransformer.m */; };
 		15656B8514CE998F00FF996F /* BBFilesystemImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 15656B7514CE998F00FF996F /* BBFilesystemImageCache.m */; };
 		15656B8714CE998F00FF996F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15656B7914CE998F00FF996F /* InfoPlist.strings */; };
 		15656B8814CE998F00FF996F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 15656B7B14CE998F00FF996F /* main.m */; };
@@ -41,8 +41,8 @@
 		15656B6C14CE998F00FF996F /* BBCacheEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBCacheEntry.m; sourceTree = "<group>"; };
 		15656B6D14CE998F00FF996F /* BBCoreDataImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBCoreDataImageCache.h; sourceTree = "<group>"; };
 		15656B6E14CE998F00FF996F /* BBCoreDataImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBCoreDataImageCache.m; sourceTree = "<group>"; };
-		15656B7114CE998F00FF996F /* UIImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageTransformer.h; sourceTree = "<group>"; };
-		15656B7214CE998F00FF996F /* UIImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageTransformer.m; sourceTree = "<group>"; };
+		15656B7114CE998F00FF996F /* BBImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBImageTransformer.h; sourceTree = "<group>"; };
+		15656B7214CE998F00FF996F /* BBImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBImageTransformer.m; sourceTree = "<group>"; };
 		15656B7414CE998F00FF996F /* BBFilesystemImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFilesystemImageCache.h; sourceTree = "<group>"; };
 		15656B7514CE998F00FF996F /* BBFilesystemImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFilesystemImageCache.m; sourceTree = "<group>"; };
 		15656B7714CE998F00FF996F /* BBImageCache-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BBImageCache-Info.plist"; sourceTree = "<group>"; };
@@ -137,8 +137,8 @@
 				15656B6C14CE998F00FF996F /* BBCacheEntry.m */,
 				15656B6D14CE998F00FF996F /* BBCoreDataImageCache.h */,
 				15656B6E14CE998F00FF996F /* BBCoreDataImageCache.m */,
-				15656B7114CE998F00FF996F /* UIImageTransformer.h */,
-				15656B7214CE998F00FF996F /* UIImageTransformer.m */,
+				15656B7114CE998F00FF996F /* BBImageTransformer.h */,
+				15656B7214CE998F00FF996F /* BBImageTransformer.m */,
 				1589486B14CE9D2900512D7F /* BBImageCache.xcdatamodeld */,
 			);
 			path = CoreDataCache;
@@ -239,7 +239,7 @@
 				15656B8014CE998F00FF996F /* BBRootViewController.m in Sources */,
 				15656B8114CE998F00FF996F /* BBCacheEntry.m in Sources */,
 				15656B8214CE998F00FF996F /* BBCoreDataImageCache.m in Sources */,
-				15656B8414CE998F00FF996F /* UIImageTransformer.m in Sources */,
+				15656B8414CE998F00FF996F /* BBImageTransformer.m in Sources */,
 				15656B8514CE998F00FF996F /* BBFilesystemImageCache.m in Sources */,
 				15656B8814CE998F00FF996F /* main.m in Sources */,
 				1589486D14CE9D2900512D7F /* BBImageCache.xcdatamodeld in Sources */,

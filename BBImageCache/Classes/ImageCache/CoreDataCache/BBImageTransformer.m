@@ -6,16 +6,16 @@
 //  Copyright (c) 2012 BiasedBit. All rights reserved.
 //
 
-#import "UIImageTransformer.h"
+#import "BBImageTransformer.h"
 
 
 
 #pragma mark -
 
-@implementation UIImageTransformer
+@implementation BBImageTransformer
 
 
-#pragma mark NSValueTransformer
+#pragma mark NSValueTransformer overrides
 
 + (Class)transformedValueClass
 {

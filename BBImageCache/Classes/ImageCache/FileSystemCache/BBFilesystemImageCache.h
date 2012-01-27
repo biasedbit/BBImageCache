@@ -17,7 +17,7 @@
 
 #pragma mark Creation
 
-- (id)initWithCacheName:(NSString*)cacheName andTimeoutInterval:(NSTimeInterval)timeout;
+- (id)initWithCacheName:(NSString*)cacheName andItemDuration:(NSTimeInterval)duration;
 
 
 #pragma mark Public static methods

@@ -8,5 +8,5 @@
 
 #pragma mark -
 
-@interface UIImageTransformer : NSValueTransformer
+@interface BBImageTransformer : NSValueTransformer
 @end

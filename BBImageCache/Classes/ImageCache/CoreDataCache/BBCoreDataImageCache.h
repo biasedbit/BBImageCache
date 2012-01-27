@@ -17,7 +17,7 @@
 
 #pragma mark Creation
 
-- (id)initWithContext:(NSManagedObjectContext*)context andTimeoutInterval:(NSTimeInterval)timeout;
+- (id)initWithContext:(NSManagedObjectContext*)context andItemDuration:(NSTimeInterval)duration;
 
 
 #pragma mark Public static methods
