@@ -144,7 +144,18 @@ NSTimeInterval const kBBFilesystemImageCacheDefaultDuration  = 86400;
     __block BOOL wrote;
 
     dispatch_sync(_queue, ^() {
-        wrote = [_cacheEntries writeToFile:cacheIndexPath atomically:YES];
+        NSError* error = nil;
+        NSData* dictionaryData = [NSPropertyListSerialization dataWithPropertyList:_cacheEntries
+                                                                            format:NSPropertyListBinaryFormat_v1_0
+                                                                           options:0
+                                                                             error:&error];
+        if (error != nil) {
+            BBLogError(@"[FSC] Failed to serialize cache with id '%@' index to binary format: %@",
+                       _cacheName, [error description]);
+            wrote = NO;
+        } else {
+            wrote = [dictionaryData writeToFile:cacheIndexPath atomically:YES];
+        }
     });
 
     return wrote;
@@ -238,13 +249,25 @@ NSTimeInterval const kBBFilesystemImageCacheDefaultDuration  = 86400;
     dispatch_sync(_queue, ^() {
         NSString* cachePathForEntries = [self cachePathForKey:_cacheIndexFilename];
 
-        self.cacheEntries = [NSMutableDictionary dictionaryWithContentsOfFile:cachePathForEntries];
-        if (_cacheEntries == nil) {
+        NSData* dictionaryData = [NSData dataWithContentsOfFile:cachePathForEntries];
+        if (dictionaryData == nil) {
             BBLogTrace(@"[FSC] Could not read cache index; creating an empty one.");
             self.cacheEntries = [[NSMutableDictionary alloc] init];
-        } else {
-            BBLogTrace(@"[FSC] Read %u cache entries from %@.", [_cacheEntries count], cachePathForEntries);
+            return;
         }
+
+        NSString* error = nil;
+        self.cacheEntries = [NSPropertyListSerialization propertyListFromData:dictionaryData
+                                                             mutabilityOption:NSPropertyListMutableContainersAndLeaves
+                                                                       format:NULL
+                                                             errorDescription:&error];
+        if (error != nil) {
+            BBLogTrace(@"[FSC] Data read from cache index file but de-serialization failed: %@", error);
+            self.cacheEntries = [[NSMutableDictionary alloc] init];
+            return;
+        }
+
+        BBLogTrace(@"[FSC] Read %u cache entries from %@.", [_cacheEntries count], cachePathForEntries);
     });
 }
 
