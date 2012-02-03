@@ -169,15 +169,19 @@ NSTimeInterval const kBBFilesystemImageCacheDefaultDuration  = 86400;
     BBLogTrace(@"[FSC] Purging all stale items (%u entries)...", [_cacheEntries count]);
 
     dispatch_sync(_queue, ^() {
+        __block NSMutableArray* keysToRemove = [NSMutableArray array];
         [_cacheEntries enumerateKeysAndObjectsUsingBlock:^(NSString* key, NSDate* date, BOOL* stop) {
             // If date is < to staleThreshold, then purge this item
             if ([[now earlierDate:date] isEqualToDate:date]) {
                 itemsPurged++;
                 BBLogTrace(@"- purged file for key '%@'", key);
 
+                [keysToRemove addObject:key];
                 [self deleteFileForKey:key];
             }
         }];
+
+        [_cacheEntries removeObjectsForKeys:keysToRemove];
     });
 
     return itemsPurged;
