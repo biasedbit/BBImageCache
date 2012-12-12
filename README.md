@@ -12,6 +12,8 @@ Further, the goal of original example was to measure two cache machanisms as acc
 
 In addition, no error handling is performed at the end of writing opertaion so take  measurements with utmost caution.
 
+<h2><i>Tested on iPad 2 with iOS 5.1.1</i></h2>
+
 ###CoreData Cache
 
 <pre><code>Testing BBCoreDataImageCache cache...
