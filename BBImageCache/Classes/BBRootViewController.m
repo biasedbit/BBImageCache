@@ -12,8 +12,7 @@
 #import "BBFilesystemImageCache.h"
 #import "BBCoreDataImageCache.h"
 #import "BBProfiler.h"
-
-
+#import "MTGCDFileIOCache.h"
 
 #pragma mark - Constants
 
@@ -99,13 +98,22 @@ NSUInteger const kBBRootViewControllerOperations = 100;
     BBLogInfo(@"%@", text);
 }
 
+#define USE_BBFSCACHE
+
 - (void)runTests
 {
     BBAppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
     
     // A normal usage would be [BBFilesystemImageCache sharedCache], but for testing purposes we want a 2sec expiration
+#ifdef USE_BBFSCACHE
     BBFilesystemImageCache* fsCache = [[BBFilesystemImageCache alloc]
                                        initWithCacheName:@"testCache" andItemDuration:2];
+#else
+	MTGCDFileIOCache*	fsCache = \
+		[[MTGCDFileIOCache alloc]
+		 initWithCacheName:@"testCache"
+		 andItemDuration:2];
+#endif
     BBCoreDataImageCache* cdCache = [[BBCoreDataImageCache alloc]
                                      initWithContext:appDelegate.managedObjectContext andItemDuration:2];
 

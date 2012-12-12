@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04909DD9167858CB00697EA7 /* MTGCDFileIOCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 04909DD8167858CB00697EA7 /* MTGCDFileIOCache.m */; };
 		1558E3BC14C90C2F00867F2C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1558E3BB14C90C2F00867F2C /* UIKit.framework */; };
 		1558E3BE14C90C2F00867F2C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1558E3BD14C90C2F00867F2C /* Foundation.framework */; };
 		1558E3C014C90C2F00867F2C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1558E3BF14C90C2F00867F2C /* CoreGraphics.framework */; };
@@ -25,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04909DD7167858CB00697EA7 /* MTGCDFileIOCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTGCDFileIOCache.h; sourceTree = "<group>"; };
+		04909DD8167858CB00697EA7 /* MTGCDFileIOCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTGCDFileIOCache.m; sourceTree = "<group>"; };
 		1558E3B714C90C2F00867F2C /* BBImageCache.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBImageCache.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1558E3BB14C90C2F00867F2C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1558E3BD14C90C2F00867F2C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -68,9 +71,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04909DD6167858CB00697EA7 /* GCDFileIOCache */ = {
+			isa = PBXGroup;
+			children = (
+				04909DD7167858CB00697EA7 /* MTGCDFileIOCache.h */,
+				04909DD8167858CB00697EA7 /* MTGCDFileIOCache.m */,
+			);
+			path = GCDFileIOCache;
+			sourceTree = "<group>";
+		};
 		1558E3AC14C90C2F00867F2C = {
 			isa = PBXGroup;
 			children = (
+				04909DD6167858CB00697EA7 /* GCDFileIOCache */,
 				15656B6014CE998F00FF996F /* BBImageCache */,
 				1558E3BA14C90C2F00867F2C /* Frameworks */,
 				1558E3B814C90C2F00867F2C /* Products */,
@@ -243,6 +256,7 @@
 				15656B8514CE998F00FF996F /* BBFilesystemImageCache.m in Sources */,
 				15656B8814CE998F00FF996F /* main.m in Sources */,
 				1589486D14CE9D2900512D7F /* BBImageCache.xcdatamodeld in Sources */,
+				04909DD9167858CB00697EA7 /* MTGCDFileIOCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
